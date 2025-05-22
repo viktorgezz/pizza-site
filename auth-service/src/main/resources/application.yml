@@ -1,0 +1,33 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: jdbc:postgresql://localhost:5433/pizza-site-db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:init_table.sql
+
+custom:
+  uri:
+    after-success-auth: "http://localhost:5173/login"
+    redirect: "http://localhost:5173/callback"
+    post-logout-redirect: "http://localhost:5173/"
+  url:
+    issuer: "http://localhost:9000"
+    allowed-origin: "http://localhost:5173"
+  id-client: "my-client"
+  duration-minute-live-token: 30
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+        oauth2: DEBUG

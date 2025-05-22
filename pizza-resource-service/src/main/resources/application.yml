@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: pizza-resource-service
+  datasource:
+    url: jdbc:postgresql://localhost:5433/pizza-site-db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000
+
+custom:
+  url:
+    allowed-origin: "http://localhost:5173"
