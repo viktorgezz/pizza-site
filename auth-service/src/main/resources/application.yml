@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: 8090
 
 spring:
   application:
@@ -20,7 +20,7 @@ custom:
     redirect: "http://localhost:5173/callback"
     post-logout-redirect: "http://localhost:5173/"
   url:
-    issuer: "http://localhost:9000"
+    issuer: "http://localhost:8090"
     allowed-origin: "http://localhost:5173"
   id-client: "my-client"
   duration-minute-live-token: 30

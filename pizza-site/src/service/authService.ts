@@ -1,7 +1,7 @@
 import { UserManager, WebStorageStateStore } from "oidc-client-ts";
 
 const oidcConfig = {
-  authority: "http://localhost:9000", // URL твоего Spring Authorization Server
+  authority: "http://localhost:8090", // URL твоего Spring Authorization Server
   client_id: "my-client", // clientId из RegisteredClient
   redirect_uri: "http://localhost:5173/callback", // должен совпадать с redirectUri в RegisteredClient
   response_type: "code",

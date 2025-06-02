@@ -4,7 +4,7 @@ import java.util.List;
 
 public class UserJwtInfo {
 
-    private Long id;
+        private Long id;
     private String username;
     private List<String> roles;
 

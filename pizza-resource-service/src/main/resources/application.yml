@@ -6,13 +6,25 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
-  
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:9000
+          issuer-uri: http://localhost:8090
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:init_table.sql
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
 
 custom:
   url:
-    allowed-origin: "http://localhost:5173"
+    allowed-origin: http://localhost:5173
+    s3: http://localhost:9000
+  minio:
+    root-user: minioadmin
+    root-password: minioadmin
+    bucket-name: pizza-images
