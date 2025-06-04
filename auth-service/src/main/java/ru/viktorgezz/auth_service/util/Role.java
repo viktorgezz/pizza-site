@@ -4,5 +4,6 @@ public enum Role {
     USER,
     MANAGER,
     WORKER,
+    COURIER,
     MAIN
 }

@@ -37,11 +37,11 @@ public class FileUploadController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{fileName}")
-    public ResponseEntity<byte[]> getFile(@PathVariable String fileName) {
+    @GetMapping("/{url}")
+    public ResponseEntity<byte[]> getFile(@PathVariable String url) {
         try {
-            ObjectMetadata metadata = s3Service.getFileMetadata(fileName);
-            byte[] file = s3Service.getFile(fileName);
+            ObjectMetadata metadata = s3Service.getFileMetadata(url);
+            byte[] file = s3Service.getFileByUrl(url);
             
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType(metadata.getContentType()))

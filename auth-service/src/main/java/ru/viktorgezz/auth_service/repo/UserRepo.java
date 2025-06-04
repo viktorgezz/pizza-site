@@ -28,11 +28,4 @@ public class UserRepo {
                 Role.valueOf(rs.getString("role").toUpperCase())
         ), username).stream().findFirst();
     }
-
-    public void save(User user) {
-        final String sql = "INSERT INTO _user (username, password) VALUES (?, ?)";
-        jdbc.update(sql,
-                user.getUsername(), user.getPassword());
-    }
-
 }

@@ -89,7 +89,6 @@ public class AuthorizationServerConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/register").permitAll()
                         .anyRequest().authenticated()
                 );
 

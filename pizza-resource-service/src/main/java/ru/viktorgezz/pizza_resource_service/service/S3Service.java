@@ -66,14 +66,31 @@ public class S3Service {
         s3Client.deleteObject(bucketName, fileName);
     }
 
-    public byte[] getFile(String fileName) {
+    public byte[] getFileByUrl(String fileUrl) {
         try {
+            // Извлекаем имя файла из URL
+            String fileName = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
+            
+            // Получаем объект из S3
             S3Object s3Object = s3Client.getObject(bucketName, fileName);
+            
+            // Получаем поток данных
             S3ObjectInputStream inputStream = s3Object.getObjectContent();
-            return IOUtils.toByteArray(inputStream);
-        } catch (AmazonServiceException | IOException e) {
-            log.error("Ошибка получения файла {}", e.getMessage());
+            
+            try {
+                // Читаем все байты из потока
+                return IOUtils.toByteArray(inputStream);
+            } finally {
+                // Закрываем поток
+                inputStream.close();
+                s3Object.close();
+            }
+        } catch (AmazonServiceException e) {
+            log.error("Ошибка получения файла из S3: {}", e.getMessage());
             throw new RuntimeException("Error getting file from S3", e);
+        } catch (IOException e) {
+            log.error("Ошибка чтения файла: {}", e.getMessage());
+            throw new RuntimeException("Error reading file from S3", e);
         }
     }
 
